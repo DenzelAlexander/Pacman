@@ -1,4 +1,4 @@
-#include "Header5.h"
+#include "Board.h"
 #include "HighScores.h"
 #include<conio.h>
 class Board;

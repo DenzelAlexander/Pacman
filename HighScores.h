@@ -1,5 +1,5 @@
-#ifndef MYDLL_H
-#define MYDLL_H
+#ifndef HIGHSCORES_H
+#define HIGHSCORES_H
 #include <iostream>
 #include <fstream>
 
@@ -91,7 +91,7 @@ void insert(int i, string name)
         return true;
     }
     Node * p = head;
-    Node * q = 0;
+    Node * q;
     int Rank = 1;
     while (p != 0 && i < p->i && Rank < 11)
                 {
@@ -110,7 +110,7 @@ void insert(int i, string name)
 void listEdit()
 {
     Node * p = head;
-    Node * q = 0;
+    Node * q;
     int Rank = 1;
     while (p != 0)
     {
