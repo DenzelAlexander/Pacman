@@ -16,6 +16,11 @@ int main()
 
 	unsigned long int intrvl = 0;
 
+    std::clock_t start;
+    double time;
+
+    start = std::clock();
+
 
 	// This while loop will cotrol the game play and it will keep on running
 	// until the game is over
@@ -48,9 +53,9 @@ int main()
 		case 80://Down Arrow Key
 			dir = 4; break;
 		}
-		// The below statement will update the pokemon map
+		// The below statement will update the pacman map
 		plyrStat = board->Update(dir);
-		// Below if condition will execute if plyrstat becomes 0, it means that the packman power becomes zero
+		// Below if condition will execute if plyrstat becomes 0, it means that the pacman power becomes zero
 		// so the game becomes over
 		if (plyrStat == 0)
 		{
@@ -58,12 +63,17 @@ int main()
 			board->drawBoard();
 			// Below statement will display the message on console
 			cout << "Game over\n";
+			time = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
 			if (Scores->scoreCheck(board->score) == true)
             {
                 cin >> name;
-                Scores->insert(board->score,name);
+                Scores->insert(board->score,name,time);
 			}
 			Scores->print();
+
+
+
+	return 0;
 			system("pause");
 			break;
 		}
@@ -73,6 +83,13 @@ int main()
 		{
 			// Below statement will display the message on console
 			cout << "You won!!!\n";
+			time = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+			if (Scores->scoreCheck(board->score) == true)
+            {
+                cin >> name;
+                Scores->insert(board->score,name,time);
+			}
+
 			system("pause");
 		}
 	}

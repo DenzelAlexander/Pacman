@@ -2,6 +2,8 @@
 #define HIGHSCORES_H
 #include <iostream>
 #include <fstream>
+#include <cstdio>
+#include <ctime>
 
 
 using namespace std;
@@ -14,10 +16,11 @@ class HighScores
 {
 	struct Node
 	{
+	    double time;
 		int i;
 		string name;
-		int Rank = 0;
-		Node* next;
+		int Rank;
+		Node *next;
 		Node *prev;
 	};
 	Node *head;
@@ -34,13 +37,14 @@ HighScores()
 	clear();
 }
 
-void insert(int i, string name)
+void insert(int i, string name,double time)
 {
     Node * n = new Node;
     n->i = i;
     n->name = name;
     n->next = 0;
     n->prev = 0;
+    n->time = time;
 
     if (head == 0)
         {
@@ -54,12 +58,15 @@ void insert(int i, string name)
            Node * p = head;
             Node *q = 0;
             int Rank = 1;
-            while (p != 0 && i < p->i)
-                {
-                q = p;
-                p = p->next;
-                Rank++;
-                }
+            while (p != 0)
+            {
+                while(i < p->i)
+                    {
+                    q = p;
+                    p = p->next;
+                    Rank++;
+                    }
+            }
             if (q == 0)
             {
                 head = n;
@@ -86,8 +93,7 @@ void insert(int i, string name)
     bool scoreCheck(int i)
 {
     if(head == 0){
-        cout << "Congratulations, you are one of the best players! " << endl;
-        cout << "Please enter your name: ";
+        addPlayer();
         return true;
     }
     Node * p = head;
@@ -100,12 +106,16 @@ void insert(int i, string name)
                 Rank++;
                 }
     if (Rank <= 10){
-        cout << "Congratulations, you are one of the best players! " << endl;
-        cout << "Please enter your name: ";
+       addPlayer();
         return true;
     }
     else
         return false;
+}
+void addPlayer()
+{
+    cout << "Congratulations, you are one of the best players!" << endl;
+    cout << "Please enter your name: ";
 }
 void listEdit()
 {
@@ -142,14 +152,20 @@ void remove(int i)
 	if(p)
 	{
 		if(q)
+        {
 			q->next = p->next;
+		}
 		else
+            {
 			head = p->next;
-
-		if(p->next)
+		}
+		if(p->next){
 			p->next->prev = q;
+		}
 		else
+        {
 			tail = q;
+		}
 
 		delete p;
 	}
@@ -162,7 +178,9 @@ bool find(int i) const
 	while(p)
 	{
 		if(p->i == i)
+        {
 			return true;
+		}
 
 		p = p->prev;
 	}
@@ -171,7 +189,7 @@ bool find(int i) const
 }
 
 void clear()
-{
+    {
 	while(tail)
 	{
 		Node* p = tail;
@@ -183,24 +201,21 @@ void clear()
 }
 
 void print() const
-{
+    {
     std::cout << "=====Top 10 High Scores=====" << endl;
-	for(Node* p = head; p; p = p->next){
+	for(Node* p = head; p; p = p->next)
+        {
         std::cout << p->Rank << ". ";
 		std::cout << p->name << " ";
-        std::cout << p->i << "\t";
-
-	std::cout << std::endl;
-	}
+        std::cout << p->i << " ";
+        std::cout << "time: ";
+        std::cout << p->time;
+        std::cout << std::endl;
+        }
 }
 
-void reverse() const
-{
-	for(Node* p = tail; p; p = p->prev)
-    std::cout << p->i << "\t";
-	std::cout << std::endl;
-}
-    void saveScore(){
+void saveScore()
+    {
     ofstream myfile;
     myfile.open("example.txt");
     myfile << "Writing this to a file.\n";

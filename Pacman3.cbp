@@ -31,6 +31,9 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Board.h" />
+		<Unit filename="HighScores.h" />
+		<Unit filename="Source1.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

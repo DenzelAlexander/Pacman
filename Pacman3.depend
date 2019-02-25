@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1532620524 source:c:\users\dzale\desktop\summer 2018\cs4310- software engineering\pacman3\source1.cpp
+1532997811 source:c:\users\dzale\desktop\summer 2018\cs4310- software engineering\pacman3\source1.cpp
 	"Board.h"
 	"HighScores.h"
 	<conio.h>
@@ -13,11 +13,13 @@
 	<windows.h>
 	<conio.h>
 
-1532620556 c:\users\dzale\desktop\summer 2018\cs4310- software engineering\pacman3\highscores.h
+1532998407 c:\users\dzale\desktop\summer 2018\cs4310- software engineering\pacman3\highscores.h
 	<iostream>
 	<fstream>
+	<cstdio>
+	<ctime>
 
-1532620435 c:\users\dzale\desktop\summer 2018\cs4310- software engineering\pacman3\board.h
+1532997049 c:\users\dzale\desktop\summer 2018\cs4310- software engineering\pacman3\board.h
 	<iostream>
 	<cwchar>
 	<stdlib.h>

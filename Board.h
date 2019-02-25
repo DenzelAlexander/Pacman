@@ -66,7 +66,8 @@ public:
 	// This is a destructor
 	virtual ~Board();
 	// Below function will display the complete board on console
-	void drawBoard(){
+	void drawBoard()
+	{
 		for (int i = 0; i < 18; i++) {
 			printf("%s\n", board[i]);
 		}
